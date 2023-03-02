@@ -6,6 +6,7 @@ namespace ProductApi.Data.Uow
     public interface IUnitOfWork : IDisposable
     {
         IGenericRepository<Product> ProductRepository { get; }
+        IGenericRepository<User> UserRepository { get; }
 
         Task CompleteAsync();
     }

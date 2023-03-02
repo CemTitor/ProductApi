@@ -11,11 +11,13 @@ namespace ProductApi.Data.Uow
         public bool disposed;
 
         public IGenericRepository<Product> ProductRepository { get; private set; }
+        public IGenericRepository<User> UserRepository { get; private set; }
 
         public UnitOfWork(AppDbContext dbContext)
         {
             this.dbContext = dbContext;
             ProductRepository = new GenericRepository<Product>(dbContext);
+            UserRepository = new GenericRepository<User>(dbContext);
         }
 
         ///Database operations are executed in a transaction, making it easy to detect and recover from errors.

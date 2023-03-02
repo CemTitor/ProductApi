@@ -42,7 +42,7 @@ namespace ProductApi.Controllers
             {
                 return BadRequest();
             }
-
+       
             product.CreatedAt = DateTime.Now;
             product.CreatedBy = "SystemUser";
             await unitOfWork.ProductRepository.InsertAsync(product);

@@ -1,4 +1,4 @@
-﻿namespace ProductApi.Base.Model
+﻿namespace ProductApi.Base
 {
     public class BaseModel
     {

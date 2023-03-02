@@ -9,7 +9,7 @@ namespace ProductApi.Data.Context
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         public DbSet<Product> Product { get; set; }
-
+        public DbSet<User> User { get; set; }
         ///How database tables are created is defined.
         protected override void OnModelCreating(ModelBuilder builder)
         {
