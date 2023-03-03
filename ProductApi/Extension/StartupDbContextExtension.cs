@@ -12,8 +12,7 @@ namespace ProductApi.Extension
             {
                 var dbConfig = configuration.GetConnectionString("DefaultConnection");
                 services.AddDbContext<AppDbContext>(options => options
-                   .UseSqlServer(dbConfig)
-                   );
+                   .UseSqlServer(dbConfig,b=>b.MigrationsAssembly("ProductApi")));
             }
             else if (dbtype == "PostgreSQL")
             {

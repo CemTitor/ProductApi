@@ -7,11 +7,11 @@ namespace ProductApi.Controllers
 {
     [Route("param/api/[controller]")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class CategoryController : ControllerBase
     {
         private readonly IUnitOfWork unitOfWork;
 
-        public ProductController(IUnitOfWork unitOfWork)
+        public CategoryController(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }
@@ -19,55 +19,55 @@ namespace ProductApi.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var products = await unitOfWork.ProductRepository.GetAllAsync();
-            return Ok(products);
+            var categorys = await unitOfWork.CategoryRepository.GetAllAsync();
+            return Ok(categorys);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            Log.Debug("ProductContoller.GetById");
-            var product = await unitOfWork.ProductRepository.GetByIdAsync(id);
-            if (product is null)
+            Log.Debug("CategoryContoller.GetById");
+            var category = await unitOfWork.CategoryRepository.GetByIdAsync(id);
+            if (category is null)
             {
                 return NotFound();
             }
-            return Ok(product);
+            return Ok(category);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Product product)
+        public async Task<IActionResult> Post([FromBody] Category category)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
-       
-            product.CreatedAt = DateTime.Now;
-            product.CreatedBy = "SystemUser";
-            await unitOfWork.ProductRepository.InsertAsync(product);
+
+            category.CreatedAt = DateTime.Now;
+            category.CreatedBy = "SystemUser";
+            await unitOfWork.CategoryRepository.InsertAsync(category);
             await unitOfWork.CompleteAsync();
 
-            return CreatedAtAction("GetById", new { product.Id }, product);
+            return CreatedAtAction("GetById", new { category.Id }, category);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] Product product)
+        public async Task<IActionResult> Put(int id, [FromBody] Category category)
         {
             if (id < 1)
             {
                 return BadRequest();
             }
 
-            var item = await unitOfWork.ProductRepository.GetByIdAsync(id);
+            var item = await unitOfWork.CategoryRepository.GetByIdAsync(id);
             if (item is null)
             {
                 return NotFound();
             }
 
-            item.Name = product.Name;
+            item.Name = category.Name;
 
-            unitOfWork.ProductRepository.Update(item);
+            unitOfWork.CategoryRepository.Update(item);
             await unitOfWork.CompleteAsync();
 
             return Ok();
@@ -76,13 +76,13 @@ namespace ProductApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var item = await unitOfWork.ProductRepository.GetByIdAsync(id);
+            var item = await unitOfWork.CategoryRepository.GetByIdAsync(id);
             if (item is null)
             {
                 return NotFound();
             }
 
-            unitOfWork.ProductRepository.RemoveAsync(item);
+            unitOfWork.CategoryRepository.RemoveAsync(item);
             await unitOfWork.CompleteAsync();
 
             return NoContent();

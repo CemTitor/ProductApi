@@ -20,9 +20,12 @@ namespace ProductApi.Extension
 
             services.AddScoped<IGenericRepository<Product>, GenericRepository<Product>>();
             services.AddScoped<IGenericRepository<User>, GenericRepository<User>>();
+            services.AddScoped<IGenericRepository<Category>, GenericRepository<Category>>();
+
 
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ICategoryService, CategoryService>();
 
             // mapper
             var mapperConfig = new MapperConfiguration(cfg =>

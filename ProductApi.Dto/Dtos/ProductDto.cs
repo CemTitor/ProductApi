@@ -1,6 +1,6 @@
 ﻿using ProductApi.Base;
 using System.ComponentModel.DataAnnotations;
-
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProductApi.Dto.Dtos
 {
@@ -9,30 +9,30 @@ namespace ProductApi.Dto.Dtos
         [Required]
         [MaxLength(125)]
         [Display(Name = "Product Name")]
-        public string ProductName { get; set; }
+        public string Name { get; set; }
 
         [Required]
         [MaxLength(125)]
         [Display(Name = "Product Description")]
-        public string ProductDescription { get; set; }
+        public string Description { get; set; }
 
         [Required]
         [MaxLength(125)]
-        [ProductPriceAttribute]
+        [PriceAttribute]
         [Display(Name = "Product Price")]
-        public decimal ProductPrice { get; set; }
+        public decimal Price { get; set; }
 
         [Required]
         [Display(Name = "Product Quantity")]
-        public int ProductQuantity { get; set; }
+        public int Quantity { get; set; }
 
         [Required]
-        [MaxLength(125)]
-        [ProductCategoryAttribute]
-        [Display(Name = "Product Category")]
-        public string ProductCategory { get; set; }
-     
+        public int CategoryId { get; set; }
 
-     
+        [MaxLength(125)]
+        //[CategoryAttribute]
+        [Display(Name = "Product Category")]
+        public string Category { get; set; }
+
     }
 }

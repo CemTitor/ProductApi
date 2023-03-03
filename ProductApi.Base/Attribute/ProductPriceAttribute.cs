@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace ProductApi.Base
 {
-    public class ProductPriceAttribute : ValidationAttribute
+    public class PriceAttribute : ValidationAttribute
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         { 
