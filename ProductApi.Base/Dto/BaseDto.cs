@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProductApi.Base
 {
@@ -6,11 +7,8 @@ namespace ProductApi.Base
     {
         public int Id { get; set; }
 
-        [Display(Name = "Created At")]
         public DateTime CreatedAt { get; set; }
 
-        [MaxLength(500)]
-        [Display(Name = "Created By")]
         public string CreatedBy { get; set; }
     }
 }

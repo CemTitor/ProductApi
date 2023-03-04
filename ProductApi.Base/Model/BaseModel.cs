@@ -1,4 +1,7 @@
-﻿namespace ProductApi.Base
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ProductApi.Base
 {
     public class BaseModel
     {

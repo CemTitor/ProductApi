@@ -21,11 +21,15 @@ namespace ProductApi.Extension
             services.AddScoped<IGenericRepository<Product>, GenericRepository<Product>>();
             services.AddScoped<IGenericRepository<User>, GenericRepository<User>>();
             services.AddScoped<IGenericRepository<Category>, GenericRepository<Category>>();
+            services.AddScoped<IGenericRepository<ShoppingList>, GenericRepository<ShoppingList>>();
+            services.AddScoped<IGenericRepository<ListItem>, GenericRepository<ListItem>>();
 
 
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IShoppingListService, ShoppingListService>();
+            services.AddScoped<IListItemService, ListItemService>();
 
             // mapper
             var mapperConfig = new MapperConfiguration(cfg =>

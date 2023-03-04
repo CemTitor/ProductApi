@@ -8,6 +8,8 @@ namespace ProductApi.Data.Uow
         IGenericRepository<Product> ProductRepository { get; }
         IGenericRepository<User> UserRepository { get; }
         IGenericRepository<Category> CategoryRepository { get; }
+        IGenericRepository<ShoppingList> ShoppingListRepository { get; }
+        IGenericRepository<ListItem> ListItemRepository { get; }
 
         Task CompleteAsync();
     }

@@ -13,7 +13,8 @@ namespace ProductApi.Data.Uow
         public IGenericRepository<Product> ProductRepository { get; private set; }
         public IGenericRepository<User> UserRepository { get; private set; }
         public IGenericRepository<Category> CategoryRepository { get; private set; }
-
+        public IGenericRepository<ShoppingList> ShoppingListRepository { get; private set; }
+        public IGenericRepository<ListItem> ListItemRepository { get; private set; }
 
         public UnitOfWork(AppDbContext dbContext)
         {
@@ -21,6 +22,8 @@ namespace ProductApi.Data.Uow
             ProductRepository = new GenericRepository<Product>(dbContext);
             UserRepository = new GenericRepository<User>(dbContext);
             CategoryRepository = new GenericRepository<Category>(dbContext);
+            ShoppingListRepository = new GenericRepository<ShoppingList>(dbContext);
+            ListItemRepository = new GenericRepository<ListItem>(dbContext);
         }
 
         ///Database operations are executed in a transaction, making it easy to detect and recover from errors.
