@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using ProductApi.Base;
 using ProductApi.Data.Model;
 using ProductApi.Data.Uow;
 using Serilog;
@@ -17,6 +19,7 @@ namespace ProductApi.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = Role.Admin)]
         public async Task<IActionResult> Get()
         {
             var products = await unitOfWork.ProductRepository.GetAllAsync();
@@ -24,6 +27,7 @@ namespace ProductApi.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = Role.NormalUser)]
         public async Task<IActionResult> GetById(int id)
         {
             Log.Debug("ProductContoller.GetById");
@@ -36,6 +40,7 @@ namespace ProductApi.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = Role.NormalUser)]
         public async Task<IActionResult> Post([FromBody] Product product)
         {
             if (!ModelState.IsValid)
@@ -52,6 +57,7 @@ namespace ProductApi.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = Role.NormalUser)]
         public async Task<IActionResult> Put(int id, [FromBody] Product product)
         {
             if (id < 1)
@@ -74,6 +80,7 @@ namespace ProductApi.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = Role.NormalUser)]
         public async Task<IActionResult> Delete(int id)
         {
             var item = await unitOfWork.ProductRepository.GetByIdAsync(id);

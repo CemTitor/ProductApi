@@ -19,7 +19,7 @@ namespace ProductApi.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = Role.Admin)]
         public async Task<BaseResponse<IEnumerable<UserDto>>> Get()
         {
             Log.Debug("UserContoller.Get");
@@ -28,7 +28,6 @@ namespace ProductApi.Controllers
         }
 
         [HttpGet("{id}")]
-        [Authorize]
         public async Task<BaseResponse<UserDto>> GetById(int id)
         {
             Log.Debug("UserContoller.GetById");
@@ -37,7 +36,6 @@ namespace ProductApi.Controllers
         }
 
         [HttpPost]
-        [Authorize]
         public async Task<BaseResponse<UserDto>> Post([FromBody] UserDto dto)
         {
             Log.Debug("UserContoller.Post");
@@ -50,7 +48,6 @@ namespace ProductApi.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize]
         public async Task<BaseResponse<UserDto>> Put(int id, [FromBody] UserDto dto)
         {
             Log.Debug("UserContoller.Put");
@@ -59,7 +56,6 @@ namespace ProductApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize]
         public async Task<BaseResponse<UserDto>> Delete(int id)
         {
             Log.Debug("UserContoller.Delete");

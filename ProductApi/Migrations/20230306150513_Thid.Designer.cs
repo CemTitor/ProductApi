@@ -10,7 +10,7 @@ using ProductApi.Data.Context;
 namespace ProductApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230304142650_Thid")]
+    [Migration("20230306150513_Thid")]
     partial class Thid
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
