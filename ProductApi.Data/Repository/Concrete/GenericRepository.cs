@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProductApi.Data.Context;
 using ProductApi.Data.Repository.Abstract;
+using System.Linq.Expressions;
 
 namespace ProductApi.Data.Repository.Concrete
 {
@@ -47,6 +48,10 @@ namespace ProductApi.Data.Repository.Concrete
         public void Update(Entity entity)
         {
             entities.Update(entity);
+        }
+        public IEnumerable<Entity> Where(Expression<Func<Entity, bool>> where)
+        {
+            return entities.Where(where).AsQueryable();
         }
     }
 }

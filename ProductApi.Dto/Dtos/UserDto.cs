@@ -11,7 +11,9 @@ namespace ProductApi.Dto.Dtos
 
         public string Email { get; set; }
 
-        public int Role { get; set; }   
-       
+        public string Role { get; set; }
+        public DateTime LastActivity { get; set; }
+
+
     }
 }

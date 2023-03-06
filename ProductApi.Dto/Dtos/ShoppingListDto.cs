@@ -10,7 +10,7 @@ namespace ProductApi.Dto.Dtos
         public int CategoryId { get; set; }
         public CategoryDto Category { get; set; }
         public string Note { get; set; }
-        public List<ListItem> ListItems { get; set; }
+        //public List<ListItemDto> ListItems { get; set; }
 
 
     }

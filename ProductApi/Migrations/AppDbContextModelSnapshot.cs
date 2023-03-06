@@ -42,6 +42,41 @@ namespace ProductApi.Migrations
                     b.ToTable("Category");
                 });
 
+            modelBuilder.Entity("ProductApi.Data.Model.ListItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ListId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ShoppingListId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("ShoppingListId");
+
+                    b.ToTable("ListItem");
+                });
+
             modelBuilder.Entity("ProductApi.Data.Model.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -135,6 +170,9 @@ namespace ProductApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("LastActivity")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -150,6 +188,23 @@ namespace ProductApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("User");
+                });
+
+            modelBuilder.Entity("ProductApi.Data.Model.ListItem", b =>
+                {
+                    b.HasOne("ProductApi.Data.Model.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ProductApi.Data.Model.ShoppingList", "ShoppingList")
+                        .WithMany()
+                        .HasForeignKey("ShoppingListId");
+
+                    b.Navigation("Product");
+
+                    b.Navigation("ShoppingList");
                 });
 
             modelBuilder.Entity("ProductApi.Data.Model.Product", b =>

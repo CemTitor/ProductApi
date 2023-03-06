@@ -10,6 +10,7 @@ namespace ProductApi.Data.Model
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
         public string Note { get; set; }
+        //public virtual List<ListItem> ListItems { get; set; }
 
     }
 }

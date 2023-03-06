@@ -1,4 +1,6 @@
 ﻿using Microsoft.OpenApi.Models;
+using ProductApi.Base;
+using ProductApi.Extension;
 using ProductApi.Extension;
 
 namespace ProductApi
@@ -11,18 +13,25 @@ namespace ProductApi
         }
 
         public IConfiguration Configuration { get; }
+        public static JwtConfig JwtConfig { get; private set; }
+
 
         public void ConfigureServices(IServiceCollection services)
         {
+            JwtConfig = Configuration.GetSection("JwtConfig").Get<JwtConfig>();
+            services.Configure<JwtConfig>(Configuration.GetSection("JwtConfig"));
+
+            services.AddMemoryCache(); // memory cashe 
+
             services.AddDbContextDI(Configuration);
             /// Add Services to DI Container
             services.AddServicesDI();
 
+            services.AddJwtBearerAuthentication();
+
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProductApi", Version = "v1" });
-            });
+            services.AddCustomizeSwagger();
+
         }
 
         /// Configure the how HTTP requests are handled by the application.
@@ -36,6 +45,8 @@ namespace ProductApi
             }
 
             app.UseHttpsRedirection();
+
+            app.UseAuthentication();
 
             app.UseRouting();
 
