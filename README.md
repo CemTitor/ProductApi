@@ -11,5 +11,6 @@ DotNet Core Final project for Patika.Dev
 - Entities are created in database with EF Core.
 
 
-Database Diagram
+# Database Diagram
+
 ![image](https://user-images.githubusercontent.com/43721794/223173838-23a2010f-d401-4711-9db1-0a7aafa05b9c.png)
